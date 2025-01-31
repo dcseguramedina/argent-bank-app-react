@@ -24,7 +24,7 @@ root.render(
       <BrowserRouter>
         <Header />
         <AppRoutes />
-        <Footer />
+        <Footer copyrightText={"Copyright"} year={new Date().getFullYear()} additionalText={"Argent Bank"} />
       </BrowserRouter>
     </StrictMode>
   </Provider>

@@ -1,10 +1,10 @@
 import React from "react";
-import Banner from "../../components/banner/Banner";
-import FeatureCard from "../../components/featureCard/FeatureCard";
 import {
   BannerProps,
   FeatureCardProps,
 } from "../../services/interfaces.service";
+import Banner from "../../components/banner/Banner";
+import FeatureCard from "../../components/featureCard/FeatureCard";
 import styles from "./Home.module.css";
 
 const Home: React.FC = () => {

@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { LogoProps } from "../../services/interfaces.service";
 import styles from "./Logo.module.css";
