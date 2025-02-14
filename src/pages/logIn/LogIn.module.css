@@ -1,5 +1,6 @@
 .bgDark {
     display: flex;
+    flex-direction: column;
     background-color: #12002b;
 }
 

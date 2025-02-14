@@ -5,14 +5,14 @@ import styles from "./Navigation.module.css";
 
 const Navigation: React.FC<NavigationProps> = ({ links }) => (
     <nav className={styles.headerNav}>
-        <ul>
+        <ul className={styles.headerNavList}>
             {links.map((link, index) => (
                 <li key={index} className={styles.headerNavItem}>
                     <NavLink
                         to={link.url}
                         className={({ isActive }) => (isActive ? styles.active : undefined)}
                     >
-                        <i className="fa fa-user-circle"></i>
+                        <i className={link.icon}></i>
                         {link.text}
                     </NavLink>
                 </li>

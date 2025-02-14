@@ -9,8 +9,10 @@ interface LogoProps {
 }
 
 interface LinkProps {
-    url: string;
+    icon: string;
     text: string;
+    onClick?: () => void;
+    url: string;
 }
 
 interface NavigationProps {
@@ -48,8 +50,9 @@ interface RememberMeProps {
 
 interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
-    variant?: 'login' | 'edit' | 'transaction';
+    variant?: 'login' | 'edit' | 'editActions' | 'transaction';
     textContent: string;
+    onClick?: () => void;
 }
 
 interface FooterProps {

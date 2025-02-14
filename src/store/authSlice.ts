@@ -28,17 +28,31 @@ export const loginUser = createAsyncThunk<
             config
         );
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        console.log(response.data.user);
+        console.log(response.data.user.firstName);
         return response.data;
     } catch (error) {
-        const err = error as AxiosError<{ message: string }>;
-        if (err.response && err.response.data.message) {
-            return rejectWithValue(err.response.data.message);
+        if (error.response && error.response.data.message) {
+            return rejectWithValue(error.response.data.message);
         } else {
-            return rejectWithValue(err.message || 'An error has occurred');
+            return rejectWithValue(error.message || 'An error has occurred');
         }
     }
 });
+
+export const logoutUser = createAsyncThunk(
+    "auth/logoutUser",
+    async (_, { rejectWithValue }) => {
+        try {
+            // Remove user from local storage
+            localStorage.removeItem('user');
+            // Make an API call to invalidate the token on the server side
+            await axios.post('http://localhost:3001/api/v1/user/logout');
+            return null;
+        } catch (error) {
+            return rejectWithValue(error.message || 'An error has occurred');
+        }
+    }
+);
 
 const authSlice = createSlice({
     name: 'auth',
@@ -63,6 +77,15 @@ const authSlice = createSlice({
                 state.user = null;
                 state.token = null;
                 state.error = action.payload || 'An unknown error has occurred';
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.isLoggedIn = false;
+                state.user = null;
+                state.token = null;
+                state.error = null;
+            })
+            .addCase(logoutUser.rejected, (state, action) => {
+                state.error = action.payload || 'Logout failed';
             });
     },
 });
