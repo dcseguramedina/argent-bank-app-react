@@ -1,31 +1,17 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router";
-import { Provider } from "react-redux";
-import store from "./store/index";
+import {createRoot} from "react-dom/client";
+import App from "../src/App";
+import "./main.css";
 
-import Header from "../src/components/header/Header";
-import Footer from "../src/components/footer/Footer";
-import AppRoutes from "../src/routes/AppRoutes";
-
-import "./index.css";
-
+// Find the HTML element with the id "root" where the React app will be mounted
 const rootElement: HTMLElement | null = document.getElementById("root");
 
+// Ensure that the root element exists, throwing an error if it doesn't
 if (!rootElement) {
-  throw new Error("Failed to find the root element");
+    throw new Error("Failed to find the root element");
 }
 
+// Create a React root using the React 18 rendering API
 const root = createRoot(rootElement);
 
-root.render(
-  <Provider store={store}>
-    <StrictMode>
-      <BrowserRouter>
-        <Header />
-        <AppRoutes />
-        <Footer copyrightText={"Copyright"} year={new Date().getFullYear()} additionalText={"Argent Bank"} />
-      </BrowserRouter>
-    </StrictMode>
-  </Provider>
-);
+// Render the React application into the root element
+root.render(<App/>);

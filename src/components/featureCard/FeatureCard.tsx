@@ -1,6 +1,11 @@
 import React from "react";
-import { FeatureCardProps } from "../../services/interfaces.service";
 import styles from "./FeatureCard.module.css";
+
+interface FeatureCardProps {
+  iconSrc: string,
+  title: string,
+  description: string,
+}
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
   iconSrc,

@@ -1,7 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { LogoProps } from "../../services/interfaces.service";
 import styles from "./Logo.module.css";
+
+interface LogoProps {
+  url: string;
+  src: string;
+  alt: string
+  ariaLabel: string;
+  srOnly?: string;
+}
 
 const Logo: React.FC<LogoProps> = ({ url, src, alt, ariaLabel, srOnly }) => {
   return (

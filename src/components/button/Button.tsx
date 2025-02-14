@@ -1,14 +1,22 @@
 import React from "react";
-import { ButtonProps } from "../../services/interfaces.service";
 import styles from "./Button.module.css";
 
-const Button: React.FC<ButtonProps> = ({ type, variant, textContent }) => {
+interface ButtonProps {
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'login' | 'edit' | 'editActions' | 'transaction';
+  textContent: string;
+  onClick?: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ type, variant, textContent, onClick }) => {
   const getButtonClass = (): string => {
     switch (variant) {
       case "login":
         return styles.login;
       case "edit":
         return styles.edit;
+      case "editActions":
+        return styles.editActions;
       case "transaction":
         return styles.transaction;
       default:
@@ -17,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({ type, variant, textContent }) => {
   };
 
   return (
-    <button type={type} className={`${styles.button} ${getButtonClass()}`}>
+    <button type={type} className={`${styles.button} ${getButtonClass()}`} onClick={onClick} >
       {textContent}
     </button>
   );
