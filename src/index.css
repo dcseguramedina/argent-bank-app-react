@@ -9,17 +9,20 @@ html {
 body {
     display: flex;
     flex-direction: column;
+    min-width: 350px;
+    min-height: 100vh;
     margin: 0;
 }
 
 main {
-    height: 87vh;
+    min-height: 90vh;
 }
 
 ul,
 li {
     list-style: none;
 }
+
 
 a {
     color: inherit;

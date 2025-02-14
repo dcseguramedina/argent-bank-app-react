@@ -7,6 +7,29 @@ import InputField from "../inputField/InputField";
 import RememberMe from "../rememberMe/RememberMe";
 import Button from "../button/Button";
 
+interface InputFieldProps {
+    label: string;
+    id: string;
+    type: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+    required?: boolean;
+}
+
+interface RememberMeProps {
+    textContent: string;
+    checked: boolean;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface ButtonProps {
+    type?: 'button' | 'submit' | 'reset';
+    variant?: 'login' | 'edit' | 'editActions' | 'transaction';
+    textContent: string;
+    onClick?: () => void;
+}
+
 const LogInForm: React.FC = () => {
     // states
     const [email, setEmail] = useState<string>("");
@@ -14,7 +37,6 @@ const LogInForm: React.FC = () => {
     const [rememberMe, setRememberMe] = useState<boolean>(false);
 
     // redux states
-    //const { isLoggedIn } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
@@ -47,7 +69,6 @@ const LogInForm: React.FC = () => {
             navigate('/user');
         } else {
             console.error('Login failed');
-            // Handle login failure (show error message, etc.)
         }
     };
 

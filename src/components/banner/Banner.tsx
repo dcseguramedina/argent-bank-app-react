@@ -1,6 +1,12 @@
 import React from "react";
-import { BannerProps } from "../../services/interfaces.service";
 import styles from "./Banner.module.css";
+
+interface BannerProps {
+  src: string;
+  alt: string;
+  ariaLabel: string;
+  description?: object;
+}
 
 const Banner: React.FC<BannerProps> = ({
   src,

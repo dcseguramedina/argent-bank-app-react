@@ -1,5 +1,10 @@
-import {FooterProps} from "../../services/interfaces.service.ts";
 import styles from "./Footer.module.css";
+
+interface FooterProps {
+    copyrightText: string;
+    year: number;
+    additionalText: string;
+}
 
 const Footer = ({copyrightText, year, additionalText}: FooterProps) => {
     return (

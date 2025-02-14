@@ -1,11 +1,20 @@
 import React from "react";
-import {
-  BannerProps,
-  FeatureCardProps,
-} from "../../services/interfaces.service";
 import Banner from "../../components/banner/Banner";
 import FeatureCard from "../../components/featureCard/FeatureCard";
 import styles from "./Home.module.css";
+
+interface BannerProps {
+  src: string;
+  alt: string;
+  ariaLabel: string;
+  description?: object;
+}
+
+interface FeatureCardProps {
+  iconSrc: string,
+  title: string,
+  description: string,
+}
 
 const Home: React.FC = () => {
   const banner: BannerProps = {

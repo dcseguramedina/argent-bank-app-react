@@ -1,17 +1,30 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import axios, {AxiosError} from "axios";
-import {AuthState, LoginResponse, LoginCredentials } from "../services/interfaces.service";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios, { AxiosError } from "axios";
+
+interface AuthState {
+    isLoggedIn: boolean;
+    token: string | null;
+}
+
+interface Login {
+    email: string;
+    password: string;
+}
+
+interface LoginResponse {
+    body: {
+        token: string;
+    };
+}
 
 const initialState: AuthState = {
     isLoggedIn: false,
-    user: null,
     token: null,
-    error: null,
 };
 
 export const loginUser = createAsyncThunk<
     LoginResponse,
-    LoginCredentials,
+    Login,
     {
         rejectValue: string;
     }
@@ -27,8 +40,9 @@ export const loginUser = createAsyncThunk<
             { email, password },
             config
         );
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        console.log(response.data.user);
+        
+        localStorage.setItem('token', response.data.body.token);
+
         return response.data;
     } catch (error) {
         const err = error as AxiosError<{ message: string }>;
@@ -40,6 +54,22 @@ export const loginUser = createAsyncThunk<
     }
 });
 
+export const logoutUser = createAsyncThunk(
+    "auth/logoutUser",
+    async (_, { rejectWithValue }) => {
+        try {
+            if(localStorage.getItem('token')) {
+                localStorage.removeItem('token')
+                return null;
+            }
+            throw new Error('An error has occurred')
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    }
+);
+
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -48,21 +78,23 @@ const authSlice = createSlice({
         builder
             .addCase(loginUser.pending, (state) => {
                 state.isLoggedIn = false;
-                state.user = null;
                 state.token = null;
-                state.error = null;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                state.user = action.payload.user;
-                state.token = action.payload.token;
-                state.error = null;
+                state.token = action.payload.body.token;
             })
-            .addCase(loginUser.rejected, (state, action)=> {
+            .addCase(loginUser.rejected, (state)=> {
                 state.isLoggedIn = false;
-                state.user = null;
                 state.token = null;
-                state.error = action.payload || 'An unknown error has occurred';
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.isLoggedIn = false;
+                state.token = null;
+            })
+            .addCase(logoutUser.rejected, (state) => {
+                state.isLoggedIn = false;
+                state.token = null;
             });
     },
 });
