@@ -1,15 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./authSlice";
+import {configureStore} from "@reduxjs/toolkit";
+import authReducer from "../features/logIn/authSlice.ts";
+import profileReducer from "../features/editProfile/profileSlice.ts";
 
-// Define the RootState type
-export type RootState = ReturnType<typeof store.getState>;
+// Set up a Redux store using Redux Toolkit
 
-// Define the AppDispatch type
-export type AppDispatch = typeof store.dispatch;
+/* configureStore is called to create the Redux store
+   The reducer object combines multiple reducers into the root reducer:
+    auth slice of the state will be managed by authReducer
+    profile slice of the state will be managed by profileReducer */
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
+        profile: profileReducer,
     },
 });
 

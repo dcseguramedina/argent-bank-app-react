@@ -1,8 +1,15 @@
 import React from "react";
-import { RememberMeProps } from "../../services/interfaces.service";
 import styles from "./RememberMe.module.css";
 
-const RememberMe: React.FC<RememberMeProps> = ({ textContent, checked, onChange }) => {
+// Interfaces
+interface RememberMeProps {
+    textContent: string;
+    checked: boolean;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+// Component creation
+const RememberMe: React.FC<RememberMeProps> = ({textContent, checked, onChange}) => {
     return (
         <div className={styles.inputRemember}>
             <input
