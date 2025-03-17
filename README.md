@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+# Utilisez une API pour un compte utilisateur bancaire avec React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Le projet 13 "Argent Bank" du parcours "Développeur d'application - JavaScript React" Openclassroom a pour objectif le développement front-end d’une application bancaire en utilisant React et Redux pour créer une expérience utilisateur dynamique et réactive.
 
-Currently, two official plugins are available:
+## Technologies
+- React
+- React Router
+- Vite
+- Redux
+- Swagger
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Objectifs pédagogiques
 
-## Expanding the ESLint configuration
+- S'authentifier à une API
+- Implémenter un gestionnaire d'état dans une application React
+- Intéragir avec une API
+- Modéliser une API
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Pour exécuter le projet
+- Bakend: https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API/tree/master
+- Frontebd: npm run dev
